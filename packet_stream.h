@@ -3,7 +3,12 @@
 
 #include "uncopyable.h"
 #include <memory>
+#ifdef WIN32
 #include <WinSock2.h>
+#else
+#include <netinet/in.h>
+#include <string.h>
+#endif
 
 namespace base {
 
