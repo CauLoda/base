@@ -67,7 +67,7 @@ class PacketReadStream : public utility::Uncopyable {
 
 class PacketWriteStream {
  public:
-  explicit PacketWriteStream(int size) : size_(size), packet_(new char[size]), current_position_(0) {}
+  explicit PacketWriteStream(int size) : size_(size), packet_(std::make_unique<char[]>(size)), current_position_(0) {}
   int size() const { return size_; }
   std::unique_ptr<char[]> packet() { return std::move(packet_); }
   bool Write(BYTE1 data) {
